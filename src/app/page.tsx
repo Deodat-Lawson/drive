@@ -4,8 +4,25 @@ import { useState } from "react"
 import { Button } from "~/components/ui/button"
 import { Folder, File, ChevronRight, Upload } from "lucide-react"
 
+// Add these types at the top of the file, before mockData
+type FileItem = {
+  id: string
+  name: string
+  type: "file"
+  fileType: string
+  size: string
+  url: string
+}
+
+type FolderItem = {
+  id: string
+  name: string
+  type: "folder"
+  children: (FileItem | FolderItem)[]
+}
+
 // Updated mock data with file type and size
-const mockData = [
+const mockData: (FileItem | FolderItem)[] = [
   {
     id: "1",
     name: "Documents",
@@ -32,10 +49,10 @@ export default function GoogleDriveUI() {
   const [currentFolder, setCurrentFolder] = useState<string[]>([])
 
   const getCurrentItems = () => {
-    let items = mockData
+    let items: (FileItem | FolderItem)[] = mockData
     for (const folderId of currentFolder) {
-      const folder = items.find((item) => item.id === folderId && item.type === "folder")
-      if (folder && "children" in folder) {
+      const folder = items.find((item): item is FolderItem => item.id === folderId && item.type === "folder")
+      if (folder) {
         items = folder.children
       } else {
         break
