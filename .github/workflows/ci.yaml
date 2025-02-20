@@ -1,0 +1,23 @@
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Install dependencies
+        run: npm install -g pnpm && pnpm install
+
+      - name: Copy .env.example files
+        shell: bash
+        run: find . -name ".env.example" -exec cp {} .env \;
+
+      -   
+
+      - name: Build
+        run: pnpm build
+
+      - name: Test
+      
