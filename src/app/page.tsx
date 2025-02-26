@@ -3,47 +3,8 @@
 import { useState } from "react"
 import { Button } from "~/components/ui/button"
 import { Folder, File, ChevronRight, Upload } from "lucide-react"
-
-// Add these types at the top of the file, before mockData
-type FileItem = {
-  id: string
-  name: string
-  type: "file"
-  fileType: string
-  size: string
-  url: string
-}
-
-type FolderItem = {
-  id: string
-  name: string
-  type: "folder"
-  children: (FileItem | FolderItem)[]
-}
-
-// Updated mock data with file type and size
-const mockData: (FileItem | FolderItem)[] = [
-  {
-    id: "1",
-    name: "Documents",
-    type: "folder",
-    children: [
-      { id: "1-1", name: "Report", type: "file", fileType: "docx", size: "2.3 MB", url: "#" },
-      { id: "1-2", name: "Presentation", type: "file", fileType: "pptx", size: "5.1 MB", url: "#" },
-    ],
-  },
-  {
-    id: "2",
-    name: "Images",
-    type: "folder",
-    children: [
-      { id: "2-1", name: "Vacation", type: "file", fileType: "jpg", size: "3.2 MB", url: "#" },
-      { id: "2-2", name: "Family", type: "file", fileType: "png", size: "4.7 MB", url: "#" },
-    ],
-  },
-  { id: "3", name: "Budget", type: "file", fileType: "xlsx", size: "1.8 MB", url: "#" },
-  { id: "4", name: "Project", type: "file", fileType: "pdf", size: "6.5 MB", url: "#" },
-]
+import { mockData } from "~/server/mockdata"
+import { type FileItem, type FolderItem } from "~/types/drive"
 
 export default function GoogleDriveUI() {
   const [currentFolder, setCurrentFolder] = useState<string[]>([])
