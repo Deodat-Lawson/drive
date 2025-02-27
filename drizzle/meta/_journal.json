@@ -1,1 +1,13 @@
-{"version":"7","dialect":"mysql","entries":[]}
+{
+  "version": "7",
+  "dialect": "mysql",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "1",
+      "when": 1740670362815,
+      "tag": "0000_bumpy_mathemanic",
+      "breakpoints": true
+    }
+  ]
+}

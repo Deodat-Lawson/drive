@@ -1,28 +1,11 @@
-import {
-  int,
-  text,
-  index,
-  singlestoreTable,
-  bigint,
-  timestamp,
-} from "drizzle-orm/singlestore-core";
+import { int, text, bigint, singlestoreTable } from
+"drizzle-orm/singlestore-core";
 
-/**
- * This is an example of how to use the multi-project schema feature of Drizzle ORM. Use the same
- * database instance for multiple projects.
- *
- * @see https://orm.drizzle.team/docs/goodies#multi-project-schema
- */
-
-
-
-export const users = singlestoreTable("users", {
-  id: int("id").notNull(),
-  name: text("name").notNull(),
-  email: text("email").notNull(),
-  createdAt: timestamp("created_at").notNull().defaultNow(),
+export const users = singlestoreTable("users_table", {
+  id: bigint("id", { mode: "bigint" }).primaryKey().autoincrement(),
+  name: text("name"),
+  age: int("age"),
 });
-
 
 // Create tables with SingleStore-specific configuration
 // export const createTable = singlestoreTable(
